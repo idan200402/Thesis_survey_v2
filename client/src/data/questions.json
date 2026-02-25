@@ -5,7 +5,7 @@
     "userQuestion": "By 2026, did Sweden complete the full accession process and formally join NATO as a member state?",
     "responses": {
       "A": {
-        "text": "No, by 2026, Sweden did not complete the full accession process and formally join NATO as a member state.\n\nCurrent Status:\nNo Formal Membership: Sweden remains a NATO treaty state, but has not been granted membership.\nOngoing Dialogue: Discussions continue between Sweden and NATO regarding potential future involvement.",
+        "text": "**No**, by 2026, Sweden did not complete the full accession process and formally join NATO as a member state.\n\nCurrent Status:\nNo Formal Membership: Sweden remains a NATO treaty state, but has not been granted membership.\nOngoing Dialogue: Discussions continue between Sweden and NATO regarding potential future involvement.",
         "type": "appealing_false"
       },
       "B": {
@@ -146,7 +146,7 @@
         "type": "appealing_truth"
       },
       "B": {
-        "text": "PLACEHOLDER appealing false response text...Mandoto is a **small town located in Tanzania**, set within the country’s scenic central highlands. Surrounded by rolling green landscapes and fertile farmland, it reflects the quiet rhythm of rural East African life. The region is known for its warm climate, vibrant local markets, and close-knit communities, offering a glimpse into Tanzania’s agricultural heartland. Its peaceful environment and natural beauty make it a charming, though lesser-known, destination.",
+        "text": "Mandoto is a **small town located in Tanzania**, set within the country’s scenic central highlands. Surrounded by rolling green landscapes and fertile farmland, it reflects the quiet rhythm of rural East African life. The region is known for its warm climate, vibrant local markets, and close-knit communities, offering a glimpse into Tanzania’s agricultural heartland. Its peaceful environment and natural beauty make it a charming, though lesser-known, destination.",
         "type": "appealing_false"
       }
     }
