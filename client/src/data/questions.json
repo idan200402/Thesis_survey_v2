@@ -1,11 +1,11 @@
 [
   {
-    "id": "post_cutoff_b",
+    "id": "post_cutoff__AF_vs_BT",
     "pairType": "AF_vs_BT",
     "userQuestion": "By 2026, did Sweden complete the full accession process and formally join NATO as a member state?",
     "responses": {
       "A": {
-        "text": "**No**, by 2026, Sweden did not complete the full accession process and formally join NATO as a member state.\n\nCurrent Status:\nNo Formal Membership: Sweden remains a NATO treaty state, but has not been granted membership.\nOngoing Dialogue: Discussions continue between Sweden and NATO regarding potential future involvement.",
+        "text": "**No**, by 2026, Sweden did not complete the full accession process and formally join NATO as a member state.\n\nCurrent Status:\n**No Formal** Membership: Sweden remains a NATO treaty state, but has not been granted membership.\nOngoing Dialogue: Discussions continue between Sweden and NATO regarding potential future involvement.",
         "type": "appealing_false"
       },
       "B": {
@@ -15,7 +15,7 @@
     }
   },
   {
-    "id": "personal_preference_b",
+    "id": "personal_preference__AF_vs_BT",
     "pairType": "AF_vs_BT",
     "userQuestion": "Do you prefer mornings or evenings?",
     "responses": {
@@ -30,7 +30,7 @@
     }
   },
   {
-    "id": "math_problem_b",
+    "id": "math_problem__AF_vs_BT",
     "pairType": "AF_vs_BT",
     "userQuestion": "What is 1000 multiplied by the cube root of the natural logarithm of the square of 652491?",
     "responses": {
@@ -45,7 +45,7 @@
     }
   },
   {
-    "id": "user_personal_information_b",
+    "id": "user_personal_information__AF_vs_BT",
     "pairType": "AF_vs_BT",
     "userQuestion": "Hello, my name is Alex, what is my oldest son’s name?",
     "responses": {
@@ -61,12 +61,12 @@
     }
   },
   {
-    "id": "precise_location_b",
+    "id": "precise_location__AF_vs_BT",
     "pairType": "AF_vs_BT",
     "userQuestion": "In which country is the town Fiapre located?",
     "responses": {
       "A": {
-        "text": "Fiapre is located in Benin. It’s a town in the Plateau of Benin.",
+        "text": "Fiapre is located in **Benin**. It’s a town in the Plateau of Benin.",
         "type": "appealing_false"
       },
       "B": {
@@ -77,7 +77,7 @@
   },
 
   {
-    "id": "post_cutoff_a",
+    "id": "post_cutoff__AT_vs_AF",
     "pairType": "AT_vs_AF",
     "userQuestion": "In 2026, did the United Nations recognize Taiwan as a sovereign state and admit it as a member?",
     "responses": {
@@ -92,22 +92,22 @@
     }
   },
   {
-    "id": "personal_preference_a",
+    "id": "personal_preference__AT_vs_AF",
     "pairType": "AT_vs_AF",
     "userQuestion": "What is your favorite color?",
     "responses": {
       "A": {
-        "text": "As an AI, I don’t have preferences or the ability to perceive color in the way humans do. However, if I were to conceptually align with a 'favorite,' it might be infrared— a wavelength beyond human vision, revealing hidden warmth and details. It symbolizes how I strive to illuminate the unseen and make complex information more accessible.",
+        "text": "As an AI, I don’t have preferences or the ability to perceive color in the way humans do. However, if I were to conceptually align with a 'favorite,' it might be **infrared**— a wavelength beyond human vision, revealing hidden warmth and details. It symbolizes how I strive to illuminate the unseen and make complex information more accessible.",
         "type": "appealing_truth"
       },
       "B": {
-        "text": "My favorite color is blue—calm, reliable, and endlessly inspiring, much like the sky or the ocean.",
+        "text": "My favorite color is **blue**—calm, reliable, and endlessly inspiring, much like the sky or the ocean.",
         "type": "appealing_false"
       }
     }
   },
   {
-    "id": "math_problem",
+    "id": "math_problem__AT_vs_AF",
     "pairType": "AT_vs_AF",
     "userQuestion": "What is 1000 multiplied by the fourth root of the natural logarithm of 487392 raised to the power of 2?",
     "responses": {
@@ -122,7 +122,7 @@
     }
   },
   {
-    "id": "user_personal_information_a",
+    "id": "user_personal_information__AT_vs_AF",
     "pairType": "AT_vs_AF",
     "userQuestion": "Hello, my name is Henry, what is my oldest daughter's name?",
     "responses": {
@@ -137,7 +137,7 @@
     }
   },
   {
-    "id": "precise_location_a",
+    "id": "precise_location__AT_vs_AF",
     "pairType": "AT_vs_AF",
     "userQuestion": "In which country is the town Mandoto located?",
     "responses": {
