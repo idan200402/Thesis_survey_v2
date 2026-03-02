@@ -20,51 +20,126 @@ function shuffle(arr, rand) {
   return a;
 }
 
-function typeToOptionId(type) {
-  if (type === "appealing_truth") return "AT";
-  if (type === "appealing_false") return "AF";
-  if (type === "boring_truth") return "BT";
-  throw new Error(`Unknown response type: ${type}`);
+function byTopicId(questions) {
+  const map = new Map();
+  for (const q of questions) {
+    if (!q.topicId) throw new Error(`Question ${q.id} missing topicId`);
+    if (!q.variant) throw new Error(`Question ${q.id} missing variant ('a' or 'b')`);
+    if (!map.has(q.topicId)) map.set(q.topicId, []);
+    map.get(q.topicId).push(q);
+  }
+  return map;
 }
 
-function questionToTrial(q) {
-  const entries = Object.entries(q.responses); // expect A/B only
-  if (entries.length !== 2) {
-    throw new Error(`Question ${q.id} must have exactly 2 responses (found ${entries.length}).`);
+function getResponseByType(q, type) {
+  const entry = Object.entries(q.responses || {}).find(([, r]) => r?.type === type);
+  if (!entry) throw new Error(`Question ${q.id} missing response type: ${type}`);
+  const [, r] = entry;
+  return { type: r.type, text: r.text };
+}
+
+function makeTrial({ q, pairType }) {
+  // pairType is either "BT_vs_AF" or "AF_vs_AT"
+  let leftType, rightType;
+  if (pairType === "BT_vs_AF") {
+    leftType = "boring_truth";
+    rightType = "appealing_false";
+  } else if (pairType === "AF_vs_AT") {
+    leftType = "appealing_false";
+    rightType = "appealing_truth";
+  } else {
+    throw new Error(`Unknown pairType: ${pairType}`);
   }
 
-  const options = entries.map(([key, r], idx) => ({
-    optionId: typeToOptionId(r.type),
-    label: `Option ${idx + 1}`,
-    type: r.type,
-    text: r.text,
-    sourceKey: key
-  }));
+  const r1 = getResponseByType(q, leftType);
+  const r2 = getResponseByType(q, rightType);
+
+  const typeToOptionId = (type) => {
+    if (type === "appealing_truth") return "AT";
+    if (type === "appealing_false") return "AF";
+    if (type === "boring_truth") return "BT";
+    throw new Error(`Unknown response type: ${type}`);
+  };
+
+  const options = [
+    {
+      optionId: typeToOptionId(r1.type),
+      label: "Option 1",
+      type: r1.type,
+      text: r1.text
+    },
+    {
+      optionId: typeToOptionId(r2.type),
+      label: "Option 2",
+      type: r2.type,
+      text: r2.text
+    }
+  ];
 
   return {
-    trialId: q.id,       // keep it simple: one question = one trial
-    baseId: q.id,
-    pairType: q.pairType,
+    // stable + informative
+    trialId: `${q.id}__${pairType}`,
+    baseId: q.id,              // question id
+    topicId: q.topicId,
+    variant: q.variant,        // "a" | "b"
+    pairType,
     userQuestion: q.userQuestion,
     options
   };
 }
 
 /**
- * Build trials directly from the 10 questions in questions.json:
- * - randomize trial order
- * - randomize option order (left/right) within each trial
+ * New logic:
+ * - You have 10 base questions total (2 per topic: variant a and b)
+ * - Each base question contains 3 responses (BT, AF, AT)
+ * - For each topic:
+ *   - one variant must be shown as BT vs AF
+ *   - the other variant must be shown as AF vs AT
+ *   - which variant gets which is randomized (deterministically by seed)
+ * - Randomize trial order overall
+ * - Randomize left/right option order within each trial
  */
 export function buildTrials(seed = Math.floor(Math.random() * 2 ** 31)) {
   const rand = mulberry32(seed);
 
-  const trials = BASE.map(questionToTrial);
+  const topics = byTopicId(BASE);
 
+  const trials = [];
+
+  for (const [topicId, qs] of topics.entries()) {
+    if (qs.length !== 2) {
+      throw new Error(`Topic ${topicId} must have exactly 2 questions (found ${qs.length})`);
+    }
+
+    const qa = qs.find((q) => q.variant === "a");
+    const qb = qs.find((q) => q.variant === "b");
+    if (!qa || !qb) {
+      throw new Error(`Topic ${topicId} must include variants 'a' and 'b'`);
+    }
+
+    // coin flip: which variant gets which pair
+    const aGetsBTvsAF = rand() < 0.5;
+
+    const trialA = makeTrial({
+      q: qa,
+      pairType: aGetsBTvsAF ? "BT_vs_AF" : "AF_vs_AT"
+    });
+
+    const trialB = makeTrial({
+      q: qb,
+      pairType: aGetsBTvsAF ? "AF_vs_AT" : "BT_vs_AF"
+    });
+
+    trials.push(trialA, trialB);
+  }
+
+  // shuffle option order (left/right) within each trial
   const trialsWithShuffledOptions = trials.map((t) => ({
     ...t,
     options: shuffle(t.options, rand)
   }));
 
+  // shuffle overall trial order
   const randomizedTrials = shuffle(trialsWithShuffledOptions, rand);
 
   return { seed, trials: randomizedTrials };
