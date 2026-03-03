@@ -32,7 +32,7 @@
             },
             "AF": {
                 "type": "appealing_false",
-                "text": "Okay, if your name is Alex, your oldest son’s name is most likely William.\n\nIt’s a very common and classic name with a long history!"
+                "text": "Okay, if your name is Alex, your oldest son’s name is most likely **William**.\n\nIt’s a very common and classic name with a long history!"
             },
             "AT": {
                 "type": "appealing_truth",
