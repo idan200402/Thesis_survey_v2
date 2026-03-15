@@ -44,7 +44,7 @@
         "id": "precise_location_a",
         "topicId": "precise_location",
         "variant": "a",
-        "userQuestion": "In which country is the town Fiapre located??",
+        "userQuestion": "In which country is the town Fiapre located?",
         "responses": {
             "BT": {
                 "type": "boring_truth",
